@@ -1,0 +1,23 @@
+{
+  "name": "mailstar",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "npx tsc && node dist/index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "Chris Umphress <cumphress@corservsolutions.com>",
+  "license": "ISC",
+  "dependencies": {
+    "dotenv": "^16.0.3",
+    "glob": "^10.2.6",
+    "sendmail": "^1.6.1",
+    "sqlite3": "^5.1.6"
+  },
+  "devDependencies": {
+    "@types/node": "^20.2.5",
+    "typescript": "^5.0.4"
+  }
+}
