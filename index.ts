@@ -1,9 +1,12 @@
 import {glob} from "glob";
-require('dotenv').config();
 const sendmail = require('sendmail')({silent: true});
 
-// Change the current working directory to the parent directory (ts file root).
+// Change the current working directory to the build's parent directory (index.ts file root).
 process.chdir(__dirname + '/..');
+console.log('Running from: '+process.cwd());
+
+// Load the .env file after we change the current working directory.
+require('dotenv').config();
 
 let throttled = false;
 
@@ -32,6 +35,7 @@ async function index() {
 			)`);
 	});
 
+	console.log('Searching for database files in ' + (process.env.EMCLIENT_INDEX || __dirname+'/**/mail_index.dat'));
 	const dbFiles = await glob(process.env.EMCLIENT_INDEX || __dirname+'/**/mail_index.dat')
 	for (const dbFile of dbFiles) {
 		console.log('Opening database file: ' + dbFile);
@@ -67,7 +71,7 @@ async function index() {
 										from: process.env.MY_EMAIL,
 										to: process.env.RTM_EMAIL,
 										// TODO: convert row.date to format ^7Feb2023. How does eM Client encode this date?
-										subject: (row.displayName ? row.displayName : row.address) + ' (email): ' + row.subject + ' ' + (process.env.RTM_TASK_SETTINGS || ''),
+										subject: (row.displayName ? row.displayName : row.address) + ': ' + row.subject + ' ' + (process.env.RTM_TASK_SETTINGS || ''),
 										html: row.preview + ' -- ' + row.displayName + '<' + row.address + '>',
 									}).then((reply: any) => {
 										console.dir('Reply: '+reply);
