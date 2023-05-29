@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/mailstar.iml" filepath="$PROJECT_DIR$/.idea/mailstar.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/emclient-rtm.iml" filepath="$PROJECT_DIR$/.idea/emclient-rtm.iml" />
     </modules>
   </component>
 </project>

@@ -67,7 +67,7 @@ async function index() {
 										from: process.env.MY_EMAIL,
 										to: process.env.RTM_EMAIL,
 										// TODO: convert row.date to format ^7Feb2023. How does eM Client encode this date?
-										subject: (row.displayName ? row.displayName : row.address) + ' (email): ' + row.subject + ' !3 ^today',
+										subject: (row.displayName ? row.displayName : row.address) + ' (email): ' + row.subject + ' ' + (process.env.RTM_TASK_SETTINGS || ''),
 										html: row.preview + ' -- ' + row.displayName + '<' + row.address + '>',
 									}).then((reply: any) => {
 										console.dir('Reply: '+reply);
